@@ -19,9 +19,9 @@ sudo apt install linux-headers-$(uname -r)
 ```
 Clone and compile the tool:
 ```sh
-$ git clone https://github.com/lnchamberlain/vanishd
-$ cd vanishd/
-$ make
+git clone https://github.com/lnchamberlain/vanishd
+cd vanishd/
+make
 ```
 
 ## Usage 
@@ -35,21 +35,21 @@ Interacting with the rootkit happens through `/proc` entries.
 
 To unhide the module (starts hidden by default):
 ```sh
-sudo echo "show" > /proc/module
+echo "show" > /proc/module
 ```
 To hide the module:
 ```sh
-sudo echo "hide" > /proc/module
+echo "hide" > /proc/module
 ```
 
 To hide a process:
 ```sh
-sudo echo "hide [pid]" > /proc/process
+echo "hide [pid]" > /proc/process
 ```
 
 To unhide a process:
 ```sh
-sudo echo "show [pid]" > /proc/process
+echo "show [pid]" > /proc/process
 ```
 
 ## Credits
