@@ -11,6 +11,11 @@ Warnings:
 - The hidden process **must not exit while hidden**, could lead to system instability through `NULL` pointer dereferences. 
 - You can only hide 1 process at a time. Future work could include building out an array of hidden process pointers but for my purposes 1 is sufficient. Do not try to hide a 2nd process while the 1st is still hidden as the pointers will be overwritten. 
 
+## TODOs
+
+- Hook the deactivate task process so a task can be removed from the hidden hashtable before being reaped
+- Automatically hide children of a hidden process 
+
 ## Compilation
 
 Install the kernel headers:
