@@ -8,13 +8,12 @@ A rootkit that uses DKOM for process hiding through:
 Warnings: 
 - This is purely academic project as part of a larger project on uncovering hidden processes. 
 - **To be used in a VM ONLY** and with **ALL PROPER PERMISSIONS**. 
-- The hidden process **must not exit while hidden**, could lead to system instability through `NULL` pointer dereferences. 
 - You can only hide 1 process at a time. Future work could include building out an array of hidden process pointers but for my purposes 1 is sufficient. Do not try to hide a 2nd process while the 1st is still hidden as the pointers will be overwritten. 
+- **Could lead to system instability**, use at your own risk in your own testing environment. 
 
-## TODOs
-
-- Hook the deactivate task process so a task can be removed from the hidden hashtable before being reaped
-- Automatically hide children of a hidden process 
+Future work:
+- Support hiding multiple processes at a time 
+- Automatically hide children of hidden processes 
 
 ## Compilation
 
@@ -24,9 +23,9 @@ sudo apt install linux-headers-$(uname -r)
 ```
 Clone and compile the tool:
 ```sh
-git clone https://github.com/lnchamberlain/vanishd
-cd vanishd/
-make
+$ git clone https://github.com/lnchamberlain/vanishd
+$ cd vanishd/
+$ make
 ```
 
 ## Usage 
@@ -40,21 +39,21 @@ Interacting with the rootkit happens through `/proc` entries.
 
 To unhide the module (starts hidden by default):
 ```sh
-echo "show" > /proc/module
+sudo echo "show" > /proc/module
 ```
 To hide the module:
 ```sh
-echo "hide" > /proc/module
+sudo echo "hide" > /proc/module
 ```
 
 To hide a process:
 ```sh
-echo "hide [pid]" > /proc/process
+sudo echo "hide [pid]" > /proc/process
 ```
 
 To unhide a process:
 ```sh
-echo "show [pid]" > /proc/process
+sudo echo "show [pid]" > /proc/process
 ```
 
 ## Credits
